@@ -8,18 +8,18 @@ solvePart2 input = solve input 12
 
 solve :: [String] -> Int -> Int
 solve input k =
-    let banks = map (\line -> map digitToInt line) input
-    in sum $ map (\nums -> maxJolts nums k) banks
+    let banks = map (map digitToInt) input
+    in sum $ map (maxJolts k) banks
 
 dropEnd :: Int -> [a] -> [a]
 dropEnd n xs = take (length xs - n) xs
 
-maxJolts :: [Int] -> Int -> Int
-maxJolts nums 0 = 0
-maxJolts nums k =
+maxJolts :: Int -> [Int] -> Int
+maxJolts 0 _ = 0
+maxJolts k nums =
     let max = maximum $ dropEnd (k - 1) nums
         rest = tail $ dropWhile (/= max) nums
-    in max * 10 ^ (k - 1) + maxJolts rest (k - 1)
+    in max * 10 ^ (k - 1) + maxJolts (k - 1) rest
 
 main :: IO ()
 main = do
