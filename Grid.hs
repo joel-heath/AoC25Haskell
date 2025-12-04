@@ -16,7 +16,8 @@ data Point = Point { x :: Int, y :: Int }
 (@@) grid (Point x y) = (values grid !! y) !! x
 
 rowsToGrid :: [[Char]] -> Grid
-rowsToGrid vals = Grid { width = length (head vals), height = length vals, values = vals }
+rowsToGrid [] = Grid { width = 0, height = 0, values = [] }
+rowsToGrid rows@(r:_) = Grid { width = length r, height = length rows, values = rows }
 
 elemsToGrid :: Int -> Int -> [Char] -> Grid
 elemsToGrid w h vals =
