@@ -1,3 +1,5 @@
+module Day1 (solve) where
+
 solvePart1 :: [String] -> Int
 solvePart1 = countZeroes . map parse
 
@@ -30,11 +32,9 @@ countClicks rotations = snd $ foldl step (50, 0) rotations
 
             in (newDial `mod` 100, count + increment)
 
-main :: IO ()
-main = do
-    input <- readFile "Inputs/Day1.txt"
+solve :: String -> String
+solve input = 
     let linesOfFile = lines input
         res1 = solvePart1 linesOfFile
         res2 = solvePart2 linesOfFile
-    putStrLn $ "Part 1: " ++ show res1
-    putStrLn $ "Part 2: " ++ show res2
+    in "Part 1: " ++ show res1 ++ "\nPart 2: " ++ show res2

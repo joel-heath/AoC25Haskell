@@ -1,13 +1,15 @@
+module Day3 (solve) where
+
 import Data.Char (digitToInt)
 
 solvePart1 :: [String] -> Int
-solvePart1 input = solve input 2
+solvePart1 input = solveK input 2
 
 solvePart2 :: [String] -> Int
-solvePart2 input = solve input 12
+solvePart2 input = solveK input 12
 
-solve :: [String] -> Int -> Int
-solve input k =
+solveK :: [String] -> Int -> Int
+solveK input k =
     let banks = map (map digitToInt) input
     in sum $ map (maxJolts k) banks
 
@@ -21,11 +23,9 @@ maxJolts k nums =
         rest = tail $ dropWhile (/= max) nums
     in max * 10 ^ (k - 1) + maxJolts (k - 1) rest
 
-main :: IO ()
-main = do
-    input <- readFile "Inputs/Day3.txt"
+solve :: String -> String
+solve input = 
     let linesOfFile = lines input
         res1 = solvePart1 linesOfFile
         res2 = solvePart2 linesOfFile
-    putStrLn $ "Part 1: " ++ show res1
-    putStrLn $ "Part 2: " ++ show res2
+    in "Part 1: " ++ show res1 ++ "\nPart 2: " ++ show res2

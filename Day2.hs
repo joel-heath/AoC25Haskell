@@ -1,3 +1,5 @@
+module Day2 (solve) where
+
 import Data.List.Split
 import Data.List (nub)
 
@@ -32,10 +34,8 @@ repeatedSubstring n =
             in length (nub chunks) == 1
     in any allRepeats [1..(len `div` 2)]
 
-main :: IO ()
-main = do
-    input <- readFile "Inputs/Day2.txt"
+solve :: String -> String
+solve input = 
     let res1 = solvePart1 input
         res2 = solvePart2 input
-    putStrLn $ "Part 1: " ++ show res1
-    putStrLn $ "Part 2: " ++ show res2
+    in "Part 1: " ++ show res1 ++ "\nPart 2: " ++ show res2
