@@ -1,7 +1,11 @@
 module Utils (
     count,
+    sum',
     foldWhile
 ) where
+
+sum' :: Num a => (b -> a) -> [b] -> a
+sum' selector xs = sum $ map selector xs
 
 count :: (a -> Bool) -> [a] -> Int
 count predicate xs = length $ filter predicate xs

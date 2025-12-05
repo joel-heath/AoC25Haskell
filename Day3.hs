@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-x-partial -Wno-unrecognised-warning-flags #-}
+
 module Day3 (solve) where
 
 import Data.Char (digitToInt)

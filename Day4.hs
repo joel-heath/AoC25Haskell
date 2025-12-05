@@ -20,7 +20,7 @@ solvePart2 input =
         (_, _, total) = 
             foldWhile step (\(_, changed, _) -> changed > 0) (ogGrid, 0, 0) forever
         step (grid, changed, total) _ =
-            let (rollsMoved :: Int, newGrid) = 
+            let (rollsMoved, newGrid) = 
                     mapAccumL
                         (\changed (p, v) ->
                             let moveable = v == '@' && count (\adj -> grid @@ adj == '@') (adjacents p grid) < 4
