@@ -4,7 +4,7 @@ module Day5 (solve) where
 
 import Grid
 import Utils
-import Data.List (sortOn)
+import Data.List
 import Data.List.Split
 
 extendRange :: Int -> [(Int, Int)] -> (Int, [(Int, Int)])
@@ -34,11 +34,12 @@ solvePart1 input =
     let [freshIds, availableIds] = map lines $ splitOn "\n\n" input
         ranges = parseRanges freshIds
     in count (\num -> any (\range -> fst range <= num && num <= snd range) ranges) $ map read availableIds
+
 solvePart2 :: String -> Int
 solvePart2 input =
     let ranges = parseRanges $ lines $ head $ splitOn "\n\n" input
         reduced = simplifyRanges $ sortOn fst ranges
-    in sum' (\(start, end) -> end - start + 1) reduced
+    in sumBy (\(start, end) -> end - start + 1) reduced
 
 solve :: String -> String
 solve input = 

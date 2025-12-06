@@ -2,7 +2,9 @@
 
 module Day3 (solve) where
 
-import Data.Char (digitToInt)
+import Grid
+import Utils
+import Data.Char
 
 solvePart1 :: [String] -> Int
 solvePart1 input = solveK input 2

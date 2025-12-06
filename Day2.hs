@@ -1,7 +1,9 @@
 module Day2 (solve) where
 
+import Grid
+import Utils
 import Data.List.Split
-import Data.List (nub)
+import Data.List
 
 solvePart1 :: String -> Int
 solvePart1 = sum . filter halvesSame . parse

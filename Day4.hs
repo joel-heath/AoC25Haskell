@@ -1,9 +1,9 @@
 module Day4 (solve) where
 
-import Data.Char (digitToInt)
-import Data.List (mapAccumL)
 import Grid
 import Utils
+import Data.Char
+import Data.List
 
 solvePart1 :: [String] -> Int
 solvePart1 input =

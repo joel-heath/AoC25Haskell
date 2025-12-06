@@ -1,5 +1,8 @@
 module Day1 (solve) where
 
+import Grid
+import Utils
+
 solvePart1 :: [String] -> Int
 solvePart1 = countZeroes . map parse
 
