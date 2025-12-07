@@ -1,16 +1,22 @@
 module Grid (
     Grid(..),
     Point(..),
+    getX,
+    getY,
     (@@),
     rowsToGrid,
     elemsToGrid,
     adjacents,
     allPositions,
-    allPosVals
+    allPosVals,
+    contains
 ) where
 
 data Grid = Grid { width :: Int, height :: Int, values :: [[Char]] }
 data Point = Point { x :: Int, y :: Int }
+getX, getY :: Point -> Int
+getX = x
+getY = y
 
 (@@) :: Grid -> Point -> Char
 (@@) grid (Point x y) = (values grid !! y) !! x
@@ -37,3 +43,7 @@ allPositions input =
 allPosVals :: Grid -> [(Point, Char)]
 allPosVals input =
     [(Point x y, input @@ Point x y) | y <- [0 .. height input - 1], x <- [0 .. width input - 1]]
+
+contains :: Grid -> Point -> Bool
+contains grid (Point x y) =
+    x >= 0 && y >= 0 && x < width grid && y < height grid
