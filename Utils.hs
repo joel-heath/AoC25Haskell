@@ -6,10 +6,11 @@ module Utils (
     rotateRight,
     rotate180,
     trim,
-    trimBy
+    trimBy,
+    pairs
 ) where
 
-import Data.List (transpose, dropWhileEnd)
+import Data.List (transpose, dropWhileEnd, tails)
 import Data.Char (isSpace)
 
 sumBy :: Num a => (b -> a) -> [b] -> a
@@ -36,3 +37,7 @@ trim = dropWhileEnd isSpace . dropWhile isSpace
 
 trimBy :: [Char] -> String -> String
 trimBy chars = dropWhileEnd (`elem` chars) . dropWhile (`elem` chars)
+
+pairs :: [a] -> [(a, a)]
+pairs xs =
+    [ (x, y) | (x:ys) <- tails xs, y <- ys ]

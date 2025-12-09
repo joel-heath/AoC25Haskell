@@ -5,15 +5,11 @@ module Day8 (solve) where
 import Utils
 import Graph
 import Data.List.Split
-import Data.List (tails, sortOn)
+import Data.List (sortOn)
 import Data.Ord  (Down(..))
 import Data.Maybe ( fromMaybe )
 
 useTestInput = False
-
-pairs :: [a] -> [(a, a)]
-pairs xs =
-    [ (x, y) | (x:ys) <- tails xs, y <- ys ]
 
 orderConnections :: [Coord] -> [(Coord, Coord)]
 orderConnections coords = sortOn (\(a, b) ->
