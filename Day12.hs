@@ -6,17 +6,20 @@ module Day12 (solve) where
 import Grid
 import Utils
 import Data.List.Split
+import Data.Function ((&))
 
 solvePart1 :: String -> Int
-solvePart1 input =
-    let regions = lines $ last $ splitOn "\n\n" input
-        stuff =
-            map (\r -> ((head (fst r) `div` 3) * (last (fst r) `div` 3),
-                                sum $ snd r)) .
-            map (\r -> (map read $ splitOn "x" $ head r,
-                        map read $ splitOn " " $ last r)) .
-            map (splitOn ": ") $ regions
-    in count (\r -> snd r <= fst r) stuff
+solvePart1 input = 
+    input
+      & splitOn "\n\n"
+      & last
+      & lines
+      & map (splitOn ": ")
+      & map (\r -> (map read $ splitOn "x" $ head r,
+                    map read $ splitOn " " $ last r))
+      & map (\(d, p) -> ((head d `div` 3) * (last d `div` 3),
+                         sum p))
+      & count (\(space, presents) -> presents <= space)
 
 solve :: String -> String
 solve input =
